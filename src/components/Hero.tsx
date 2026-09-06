@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, Sparkles, ShieldCheck, TrendingUp, Layers, CheckCircle2, Copy, Check, ExternalLink, Code2, Globe, Briefcase, FileText, Download } from 'lucide-react';
+import { ArrowDown, Sparkles, ShieldCheck, TrendingUp, Layers, CheckCircle2, Copy, Check, ExternalLink, Code2, Globe, Briefcase, FileText, Download, Github } from 'lucide-react';
 import { DESIGNER_INFO } from '../data/portfolioData';
 
 interface HeroProps {
@@ -167,6 +167,19 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, onOp
                 </>
               )}
             </button>
+
+            <a
+              href={DESIGNER_INFO.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="hero-github-link"
+              className="px-4 py-3.5 rounded-xl font-mono text-xs text-neutral-300 border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/25 transition-all flex items-center gap-2 group"
+              title="View Shebas Khan on GitHub"
+            >
+              <Github className="w-4 h-4 text-neutral-300 group-hover:text-white transition-colors" />
+              <span>github.com/shebas72</span>
+              <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+            </a>
           </div>
         </div>
 

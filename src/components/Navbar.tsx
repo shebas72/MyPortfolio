@@ -16,7 +16,8 @@ import {
   Layers,
   Award,
   Code2,
-  FolderGit2
+  FolderGit2,
+  Github
 } from 'lucide-react';
 import { DESIGNER_INFO } from '../data/portfolioData';
 
@@ -106,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     { 
       label: isArabic ? '١٥+ عاماً من الخبرة في السعودية' : '15+ Yrs Career Trajectory', 
-      desc: isArabic ? 'تدرج وظيفي من ٢٠١٠ وحتى الآن في الرياض' : 'From Nesma Injazat & UGB across KSA & GCC',
+      desc: isArabic ? 'تدرج وظيفي من ٢٠١٠ وحتى الآن في الرياض' : 'Leading tier-1 enterprise tech groups across KSA & GCC',
       href: '#experience',
       icon: Award 
     },
@@ -185,6 +186,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Briefcase className="w-3.5 h-3.5 text-indigo-200" />
               <span>{isArabic ? 'توظيف بدوام كامل' : 'Hire Full-Time'}</span>
             </button>
+
+            {/* GitHub Profile Link */}
+            <a
+              href={DESIGNER_INFO.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="navbar-github-btn"
+              title="Shebas Khan on GitHub (shebas72)"
+              className="hidden md:flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/20 text-xs font-mono text-neutral-300 hover:text-white transition-all group"
+            >
+              <Github className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
+              <span className="hidden lg:inline text-[11px]">GitHub</span>
+            </a>
 
             {/* UNIVERSAL BURGER MENU BUTTON - Visible on ALL screen sizes */}
             <button
@@ -274,7 +288,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <p className="text-xs text-neutral-300 leading-relaxed">
                   {isArabic 
                     ? 'ملخص تنفيذي يغطي ١٥ عاماً من الخبرة في الرياض وجدة، والشهادات المعتمدة، وسجل المشاريع مع الشركات الكبرى.'
-                    : 'Complete resume detailing 15+ years enterprise leadership across Nesma Injazat & UGB, ZATCA Phase 2 compliance, and tech stack.'}
+                    : 'Complete resume detailing 15+ years enterprise leadership across leading Saudi conglomerates, ZATCA Phase 2 compliance, and tech stack.'}
                 </p>
 
                 <div className="flex items-center gap-2 pt-1">
@@ -400,6 +414,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {copiedEmail ? 'Copied!' : 'Copy'}
                   </span>
                 </button>
+
+                <a
+                  href={DESIGNER_INFO.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="drawer-github-link"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5 text-neutral-300 hover:text-white hover:border-white/15 transition-all group"
+                >
+                  <div className="flex items-center gap-2">
+                    <Github className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
+                    <span className="font-mono text-xs">github.com/shebas72</span>
+                  </div>
+                  <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+                </a>
               </div>
             </div>
 

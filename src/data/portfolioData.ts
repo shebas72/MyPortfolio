@@ -19,7 +19,7 @@ export const DESIGNER_INFO = {
   statConversionUplift: "+40%",
   statSecurityRating: "0.02%",
   socials: {
-    github: "https://github.com",
+    github: "https://github.com/shebas72",
     linkedin: "https://linkedin.com",
     dribbble: "https://dribbble.com",
     twitter: "https://twitter.com",
@@ -61,9 +61,10 @@ export const SAUDI_MARKET_PILLARS = [
 export const PROJECTS: Project[] = [
   {
     id: "injazat-superpay",
-    title: "Injazat SuperPay & ZATCA Hub",
-    arabicTitle: "إنجازات سوبر باي ومنصة زاتكا",
-    client: "Nesma Injazat Fintech",
+    title: "Enterprise SuperPay & ZATCA Hub",
+    arabicTitle: "منصة سوبر باي وحلول زاتكا المالية",
+    client: "Confidential (Leading Saudi Fintech)",
+    arabicClient: "جهة سرية (مؤسسة مالية سعودية كبرى)",
     year: "2025",
     category: "Laravel API & Fintech",
     stackType: "laravel",
@@ -126,29 +127,31 @@ export const PROJECTS: Project[] = [
       quote: "Shebas Khan delivered unmatched mastery across the full spectrum: from deep Laravel backend architecture and ZATCA compliance to a world-class bilingual React interface. The product sets the benchmark in Saudi fintech.",
       author: "Fahad Al-Sulaiman",
       role: "Digital Banking Director",
-      company: "Nesma Injazat Tech"
+      company: "Confidential (Fintech Division)",
+      arabicCompany: "جهة مالية سرية"
     }
   },
   {
     id: "riyadh-vision-portal",
-    title: "Riyadh Vision 2030 Smart Portal",
-    arabicTitle: "بوابة خدمات رؤية الرياض ٢٠٣٠",
-    client: "Riyadh Municipal & Economic Council",
+    title: "Saudi Vision 2030 Smart Services Portal",
+    arabicTitle: "بوابة الخدمات الذكية لرؤية ٢٠٣٠",
+    client: "Confidential (Government & Public Authority)",
+    arabicClient: "جهة حكومية سرية (القطاع العام)",
     year: "2024",
     category: "Full Triad Solutions",
     stackType: "triad",
     tagline: "Headless WordPress editorial hub, Laravel Nafath SSO middleware, and React RTL frontend",
     arabicTagline: "منظومة ثلاثية: ووردبريس لإدارة المحتوى، لارافيل للربط مع نفاذ، ورياكت للواجهة التفاعلية",
-    description: "An enterprise public services and cultural initiatives portal powering digital interactions for Riyadh's flagship economic transformation programs. Features headless editorial management, high-volume news publishing, and verified citizen services.",
+    description: "An enterprise public services and cultural initiatives portal powering digital interactions for flagship economic transformation programs in Saudi Arabia. Features headless editorial management, high-volume news publishing, and verified citizen services.",
     challenge: "Editorial teams needed the intuitive content modeling of WordPress, government engineers required strict Laravel microservices with Saudi National Identity (Nafath SSO), and citizens demanded an ultra-fast, accessible bilingual experience.",
     solution: "Constructed the ultimate modern triad: Headless WordPress with ACF Pro and WPGraphQL for bilingual editorial content; a secure Laravel gateway handling Nafath citizen authentication and council APIs; and a blazing-fast React 19 frontend rendered with native RTL.",
-    coverImage: "https://images.unsplash.com/photo-1512958789358-4dacacbe09c3?auto=format&fit=crop&w=1400&q=80",
+    coverImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80",
     mockupScreens: [
       {
         title: "Bilingual Citizen Services Portal",
         subtitle: "High-density service catalog with Nafath digital identity verification",
         previewType: "dashboard",
-        image: "https://images.unsplash.com/photo-1512958789358-4dacacbe09c3?auto=format&fit=crop&w=1400&q=80"
+        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80"
       },
       {
         title: "Headless WordPress Editorial Matrix",
@@ -189,7 +192,7 @@ export const PROJECTS: Project[] = [
     typography: {
       primary: "Cairo SemiBold",
       secondary: "IBM Plex Sans Arabic",
-      sampleText: "منصة الرياض الرقمية الموحدة — معتمدة عبر النفاذ الوطني الموحد"
+      sampleText: "منصة الخدمات الرقمية الموحدة — معتمدة عبر النفاذ الوطني الموحد"
     },
     featured: true,
     liveUrl: "https://riyadh-vision.preview.dev",
@@ -197,14 +200,16 @@ export const PROJECTS: Project[] = [
       quote: "Combining WordPress for content agility, Laravel for military-grade security, and React for frontend delight was a masterstroke by Shebas. It transformed our public portal.",
       author: "Dr. Tariq Al-Husseini",
       role: "Digital Governance Lead",
-      company: "Riyadh Strategic Council"
+      company: "Confidential (Public Sector Authority)",
+      arabicCompany: "جهة حكومية سرية"
     }
   },
   {
     id: "souq-alkhaleej-ecommerce",
-    title: "Souq Al-Khaleej Luxury eCommerce",
-    arabicTitle: "سوق الخليج للتجارة الإلكترونية الفاخرة",
-    client: "Al-Khaleej Luxury Retail Group",
+    title: "Prestige GCC Luxury eCommerce Marketplace",
+    arabicTitle: "منصة التجارة الإلكترونية الفاخرة للخليج",
+    client: "Confidential (GCC Luxury Retail Group)",
+    arabicClient: "مجموعة تجزئة فاخرة (جهة سرية)",
     year: "2024",
     category: "Saudi eCommerce",
     stackType: "wordpress",
@@ -267,14 +272,16 @@ export const PROJECTS: Project[] = [
       quote: "Shebas transformed our eCommerce presence. Our revenue spiked by 44% in the first quarter thanks to the frictionless Mada and Tabby integration and the astonishing speed of the React storefront.",
       author: "Reem Al-Ghamdi",
       role: "Managing Director",
-      company: "Al-Khaleej Luxury Brands"
+      company: "Confidential (Luxury Brands Group)",
+      arabicCompany: "مجموعة تجارية فاخرة (سري)"
     }
   },
   {
     id: "nesma-enterprise-saas",
-    title: "Nesma Operations SaaS & ERP Suite",
-    arabicTitle: "نظام إدارة العمليات السحابي لمجموعة نسما",
-    client: "Nesma Holding",
+    title: "Enterprise Operations SaaS & ERP Suite",
+    arabicTitle: "نظام إدارة العمليات السحابي للمؤسسات الكبرى",
+    client: "Confidential (Major Saudi Conglomerate)",
+    arabicClient: "مجموعة قابضة سعودية رائدة (سري)",
     year: "2024",
     category: "Laravel API & Fintech",
     stackType: "laravel",
@@ -299,7 +306,7 @@ export const PROJECTS: Project[] = [
       }
     ],
     tags: ["Laravel 11", "React 19", "Odoo ERP", "Multi-Tenant", "Enterprise SaaS", "PostgreSQL", "Bilingual"],
-    saudiTags: ["Nesma Group", "Enterprise ERP", "Odoo Integration", "Saudi Supply Chain", "NCA ECC"],
+    saudiTags: ["Confidential Conglomerate", "Enterprise ERP", "Odoo Integration", "Saudi Supply Chain", "NCA ECC"],
     architectureStack: {
       laravel: "Laravel 11 Multi-Tenant architecture with PostgreSQL schema isolation & Redis queues",
       react: "React 19 with TanStack Table, Chart.js, Tailwind CSS & Arabic RTL localization",
@@ -322,16 +329,17 @@ export const PROJECTS: Project[] = [
     typography: {
       primary: "Cairo Bold",
       secondary: "JetBrains Mono",
-      sampleText: "لوحة التحكم المركزية لعمليات مجموعة نسما — تحديث فوري لكافة المشاريع"
+      sampleText: "لوحة التحكم المركزية للعمليات المؤسسية — تحديث فوري لكافة المشاريع"
     },
     featured: false,
     liveUrl: "https://nesma-ops.preview.dev"
   },
   {
     id: "sehacare-saudi-health",
-    title: "SehaCare Saudi Telehealth Platform",
-    arabicTitle: "منصة صحة كير للرعاية الصحية والطب الاتصالي",
-    client: "Saudi Telehealth & Specialized Clinics",
+    title: "Saudi Telehealth & Specialized Care Platform",
+    arabicTitle: "منصة الرعاية الصحية والطب الاتصالي المعتمدة",
+    client: "Confidential (Saudi Healthcare Network)",
+    arabicClient: "شبكة رعاية صحية سعودية (سري)",
     year: "2023",
     category: "WordPress + Headless",
     stackType: "wordpress",
@@ -387,9 +395,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "aura-design-system",
-    title: "Aura KSA Enterprise Design System",
-    arabicTitle: "نظام التصميم السحابي أورا للمؤسسات السعودية",
-    client: "Aura Enterprise Technologies",
+    title: "Enterprise Cloud Design System & Tokens",
+    arabicTitle: "نظام التصميم السحابي للمؤسسات السعودية",
+    client: "Confidential (Enterprise SaaS Corporation)",
+    arabicClient: "شركة تقنية سحابية كبرى (سري)",
     year: "2025",
     category: "React & Design Systems",
     stackType: "react",
@@ -435,7 +444,7 @@ export const PROJECTS: Project[] = [
     typography: {
       primary: "Cairo",
       secondary: "Syne",
-      sampleText: "Aura Design Tokens — المعايير الموحدة للواجهات السحابية"
+      sampleText: "Enterprise Design Tokens — المعايير الموحدة للواجهات السحابية"
     },
     featured: false,
     liveUrl: "https://aura-ds.preview.dev"

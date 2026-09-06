@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DESIGNER_INFO } from '../data/portfolioData';
-import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck, FileText, Download } from 'lucide-react';
+import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck, FileText, Download, ExternalLink } from 'lucide-react';
 
 interface FooterProps {
   onOpenEstimator: () => void;
@@ -80,6 +80,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenEstimator, onOpenCV, isAra
             >
               <MessageCircle className="w-4 h-4" />
               <span>{isArabic ? 'محادثة مباشرة عبر واتساب' : 'WhatsApp (+966 55 086 0467)'}</span>
+            </a>
+            <a
+              href={DESIGNER_INFO.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="footer-github-link"
+              className="flex items-center gap-2 text-xs text-neutral-300 hover:text-white transition-colors group"
+            >
+              <Github className="w-4 h-4 text-indigo-400" />
+              <span className="font-mono">github.com/shebas72</span>
+              <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
             </a>
           </div>
 

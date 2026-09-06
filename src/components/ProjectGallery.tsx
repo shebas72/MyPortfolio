@@ -29,6 +29,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({ onSelectProject,
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (project.arabicTitle && project.arabicTitle.includes(searchQuery)) ||
         project.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (project.arabicClient && project.arabicClient.toLowerCase().includes(searchQuery.toLowerCase())) ||
         project.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())) ||
         project.saudiTags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -169,6 +170,10 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({ onSelectProject,
                     src={project.coverImage}
                     alt={project.title}
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      // Fallback to dependable architecture image if CDN fails
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80";
+                    }}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 filter brightness-95 group-hover:brightness-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#121522] via-transparent to-transparent opacity-80" />
@@ -196,8 +201,9 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({ onSelectProject,
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-mono text-indigo-400 tracking-wider uppercase">
-                        {project.client}
+                      <span className="text-xs font-mono text-indigo-400 tracking-wider flex items-center gap-1.5">
+                        <ShieldCheck className="w-3 h-3 text-indigo-400 shrink-0" />
+                        <span>{isArabic ? (project.arabicClient || project.client) : project.client}</span>
                       </span>
                       <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
                         {project.saudiTags[0] || 'KSA Enterprise'}
@@ -256,7 +262,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({ onSelectProject,
               <thead>
                 <tr className="border-b border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-400 bg-white/[0.01]">
                   <th className="py-4 px-6">Year</th>
-                  <th className="py-4 px-6">{isArabic ? 'المشروع والعميل' : 'Project & Client'}</th>
+                  <th className="py-4 px-6">{isArabic ? 'المشروع والجهة (سري)' : 'Project & Client (Confidential)'}</th>
                   <th className="py-4 px-6 hidden sm:table-cell">{isArabic ? 'المنظومة' : 'Category & Stack'}</th>
                   <th className="py-4 px-6 hidden md:table-cell">{isArabic ? 'النتيجة والأثر' : 'Key Metric / Result'}</th>
                   <th className="py-4 px-6 hidden lg:table-cell">{isArabic ? 'معايير السعودية' : 'Saudi Market Tags'}</th>
@@ -277,7 +283,10 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({ onSelectProject,
                       <div className="font-semibold text-white group-hover:text-emerald-300 transition-colors font-display">
                         {isArabic ? (project.arabicTitle || project.title) : project.title}
                       </div>
-                      <div className="text-xs text-neutral-400">{project.client}</div>
+                      <div className="text-xs text-neutral-400 font-mono flex items-center gap-1 mt-0.5">
+                        <ShieldCheck className="w-3 h-3 text-neutral-500 shrink-0" />
+                        <span>{isArabic ? (project.arabicClient || project.client) : project.client}</span>
+                      </div>
                     </td>
                     <td className="py-4 px-6 hidden sm:table-cell">
                       <span className="px-2.5 py-1 rounded-lg text-xs bg-white/[0.04] text-neutral-300 border border-white/5">

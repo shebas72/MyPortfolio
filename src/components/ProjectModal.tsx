@@ -36,7 +36,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               {project.category}
             </span>
-            <span className="text-xs font-mono text-neutral-400">{project.client} • {project.year}</span>
+            <span className="text-xs font-mono text-neutral-300 flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+              <span>{isArabic ? (project.arabicClient || project.client) : project.client}</span> • {project.year}
+            </span>
             <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 text-neutral-300">
               🇸🇦 {project.saudiTags[0]}
             </span>
@@ -81,6 +84,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                 src={activeScreen.image || project.coverImage} 
                 alt={activeScreen.title}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80";
+                }}
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0F121C] via-transparent to-transparent opacity-80" />
@@ -237,7 +243,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             <div className="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-500/20 relative">
               <p className="text-sm italic text-indigo-200 mb-3">"{project.testimonial.quote}"</p>
               <div className="text-xs font-semibold text-white">{project.testimonial.author}</div>
-              <div className="text-xs text-neutral-400">{project.testimonial.role}, {project.testimonial.company}</div>
+              <div className="text-xs text-neutral-400">
+                {project.testimonial.role}, {isArabic && project.testimonial.arabicCompany ? project.testimonial.arabicCompany : project.testimonial.company}
+              </div>
             </div>
           )}
 

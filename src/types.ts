@@ -32,6 +32,7 @@ export interface Project {
   title: string;
   arabicTitle?: string;
   client: string;
+  arabicClient?: string;
   year: string;
   category: Exclude<ProjectCategory, 'All'>;
   stackType: TechStackKey;
@@ -61,6 +62,7 @@ export interface Project {
     author: string;
     role: string;
     company: string;
+    arabicCompany?: string;
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Download, Printer, Check, Copy, FileText, Briefcase, Mail, Phone, MapPin, ShieldCheck, Award, ExternalLink } from 'lucide-react';
+import { X, Download, Printer, Check, Copy, FileText, Briefcase, Mail, Phone, MapPin, ShieldCheck, Award, ExternalLink, Github } from 'lucide-react';
 import { DESIGNER_INFO, EXPERIENCES, CERTIFICATIONS, KEY_SKILLS } from '../data/portfolioData';
 
 interface CVModalProps {
@@ -125,6 +125,18 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose, isArabic }) =
                   <button onClick={handleCopyEmail} className="hover:text-white underline underline-offset-2">
                     {copiedEmail ? 'Copied to clipboard' : 'shebas.veer@gmail.com'}
                   </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Github className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+                  <a 
+                    href={DESIGNER_INFO.socials.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-white underline underline-offset-2 flex items-center gap-1"
+                  >
+                    <span>github.com/shebas72</span>
+                    <ExternalLink className="w-2.5 h-2.5 opacity-70" />
+                  </a>
                 </div>
               </div>
             </div>
