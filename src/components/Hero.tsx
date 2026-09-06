@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, Sparkles, ShieldCheck, TrendingUp, Layers, CheckCircle2, Copy, Check, ExternalLink, Code2, Globe, Briefcase } from 'lucide-react';
+import { ArrowDown, Sparkles, ShieldCheck, TrendingUp, Layers, CheckCircle2, Copy, Check, ExternalLink, Code2, Globe, Briefcase, FileText, Download } from 'lucide-react';
 import { DESIGNER_INFO } from '../data/portfolioData';
 
 interface HeroProps {
   onExploreWork: () => void;
   onOpenEstimator: () => void;
+  onOpenCV?: () => void;
   isArabic: boolean;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, isArabic }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, onOpenCV, isArabic }) => {
   const [riyadhTime, setRiyadhTime] = useState<string>('');
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -124,6 +125,30 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, isAr
               <Briefcase className="w-4 h-4 text-indigo-400" />
               <span>{isArabic ? 'مناقشة فرصة عمل / مقابلة' : 'Discuss Full-Time Role / Interview'}</span>
             </button>
+
+            {/* Direct Download & View CV */}
+            {onOpenCV ? (
+              <button
+                onClick={onOpenCV}
+                id="hero-open-cv-btn"
+                className="px-5 py-3.5 rounded-xl font-medium text-sm bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 hover:border-emerald-400/50 shadow-lg shadow-emerald-950/30 transition-all transform active:scale-95 flex items-center gap-2"
+              >
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span>{isArabic ? 'السيرة الذاتية (PDF)' : 'Download CV (PDF)'}</span>
+                <Download className="w-3.5 h-3.5 text-emerald-300" />
+              </button>
+            ) : (
+              <a
+                href="/Shebas_Khan_CV.pdf"
+                download="Shebas_Khan_Senior_Architect_CV.pdf"
+                id="hero-download-cv-link"
+                className="px-5 py-3.5 rounded-xl font-medium text-sm bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 hover:border-emerald-400/50 shadow-lg shadow-emerald-950/30 transition-all transform active:scale-95 flex items-center gap-2"
+              >
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span>{isArabic ? 'تحميل السيرة الذاتية (PDF)' : 'Download CV (PDF)'}</span>
+                <Download className="w-3.5 h-3.5 text-emerald-300" />
+              </a>
+            )}
 
             <button
               onClick={handleCopyEmail}

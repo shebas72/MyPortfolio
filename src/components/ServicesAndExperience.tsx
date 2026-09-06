@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { SERVICES, EXPERIENCES, CERTIFICATIONS, KEY_SKILLS } from '../data/portfolioData';
-import { CheckCircle, Award, Briefcase, ChevronDown, ChevronUp, ArrowRight, Code, Palette, Zap, ShieldCheck } from 'lucide-react';
+import { CheckCircle, Award, Briefcase, ChevronDown, ChevronUp, ArrowRight, Code, Palette, Zap, ShieldCheck, Download, FileText } from 'lucide-react';
 
 interface ServicesAndExperienceProps {
   onOpenEstimator: () => void;
+  onOpenCV?: () => void;
   isArabic: boolean;
 }
 
-export const ServicesAndExperience: React.FC<ServicesAndExperienceProps> = ({ onOpenEstimator, isArabic }) => {
+export const ServicesAndExperience: React.FC<ServicesAndExperienceProps> = ({ onOpenEstimator, onOpenCV, isArabic }) => {
   const [expandedExp, setExpandedExp] = useState<string>('nesma');
 
   return (
@@ -95,14 +96,40 @@ export const ServicesAndExperience: React.FC<ServicesAndExperienceProps> = ({ on
             </p>
           </div>
 
-          <button
-            onClick={onOpenEstimator}
-            id="book-consultation-btn"
-            className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg transition-all self-start md:self-auto flex items-center gap-2"
-          >
-            <span>{isArabic ? 'تواصل لفرص العمل' : 'Inquire for Full-Time Roles'}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex flex-wrap items-center gap-2.5 self-start md:self-auto">
+            {onOpenCV ? (
+              <button
+                onClick={onOpenCV}
+                id="experience-download-cv-btn"
+                className="px-4 py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-semibold shadow-sm transition-all flex items-center gap-2"
+              >
+                <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{isArabic ? 'السيرة الذاتية الرسمية (PDF)' : 'Official CV (PDF)'}</span>
+                <Download className="w-3.5 h-3.5 text-emerald-300" />
+              </button>
+            ) : (
+              <a
+                href="/Shebas_Khan_CV.pdf"
+                download="Shebas_Khan_Senior_Architect_CV.pdf"
+                id="experience-download-cv-link"
+                className="px-4 py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-semibold shadow-sm transition-all flex items-center gap-2"
+              >
+                <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{isArabic ? 'تحميل السيرة الذاتية (PDF)' : 'Download CV (PDF)'}</span>
+                <Download className="w-3.5 h-3.5 text-emerald-300" />
+              </a>
+            )}
+
+            <button
+              onClick={onOpenEstimator}
+              id="book-consultation-btn"
+              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg transition-all flex items-center gap-2"
+            >
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>{isArabic ? 'تواصل لفرص العمل' : 'Inquire for Full-Time Roles'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

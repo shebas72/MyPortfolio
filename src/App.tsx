@@ -9,11 +9,13 @@ import { ProjectModal } from './components/ProjectModal';
 import { DesignPlayground } from './components/DesignPlayground';
 import { ServicesAndExperience } from './components/ServicesAndExperience';
 import { ProjectEstimatorModal } from './components/ProjectEstimatorModal';
+import { CVModal } from './components/CVModal';
 import { Footer } from './components/Footer';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isEstimatorOpen, setIsEstimatorOpen] = useState(false);
+  const [isCVOpen, setIsCVOpen] = useState(false);
   const [isArabic, setIsArabic] = useState(false);
 
   const toggleLanguage = () => {
@@ -48,6 +50,7 @@ export default function App() {
     >
       <Navbar
         onOpenEstimator={() => setIsEstimatorOpen(true)}
+        onOpenCV={() => setIsCVOpen(true)}
         activeSection="work"
         isArabic={isArabic}
         onToggleLanguage={toggleLanguage}
@@ -57,6 +60,7 @@ export default function App() {
         <Hero
           onExploreWork={scrollToGallery}
           onOpenEstimator={() => setIsEstimatorOpen(true)}
+          onOpenCV={() => setIsCVOpen(true)}
           isArabic={isArabic}
         />
 
@@ -78,12 +82,14 @@ export default function App() {
         {/* 15+ Years Industry Experience & Services */}
         <ServicesAndExperience
           onOpenEstimator={() => setIsEstimatorOpen(true)}
+          onOpenCV={() => setIsCVOpen(true)}
           isArabic={isArabic}
         />
       </main>
 
       <Footer
         onOpenEstimator={() => setIsEstimatorOpen(true)}
+        onOpenCV={() => setIsCVOpen(true)}
         isArabic={isArabic}
       />
 
@@ -100,6 +106,13 @@ export default function App() {
       <ProjectEstimatorModal
         isOpen={isEstimatorOpen}
         onClose={() => setIsEstimatorOpen(false)}
+        isArabic={isArabic}
+      />
+
+      {/* Official Candidate CV Viewer & PDF Downloader */}
+      <CVModal
+        isOpen={isCVOpen}
+        onClose={() => setIsCVOpen(false)}
         isArabic={isArabic}
       />
     </div>

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { DESIGNER_INFO } from '../data/portfolioData';
-import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck, FileText, Download } from 'lucide-react';
 
 interface FooterProps {
   onOpenEstimator: () => void;
+  onOpenCV?: () => void;
   isArabic: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenEstimator, isArabic }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenEstimator, onOpenCV, isArabic }) => {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
@@ -92,13 +93,38 @@ export const Footer: React.FC<FooterProps> = ({ onOpenEstimator, isArabic }) => 
                 ? 'تبحث عن مهندس برمجيات أول أو قائد تقني لمنظومة ووردبريس ولارافيل ورياكت في شركتك؟' 
                 : 'Seeking a Senior Full-Stack Architect to spearhead your enterprise engineering team in KSA?'}
             </p>
-            <button
-              onClick={onOpenEstimator}
-              id="footer-start-brief-btn"
-              className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-lg shadow-indigo-600/20"
-            >
-              {isArabic ? 'تواصل لتحديد مقابلة عمل' : 'Schedule Full-Time Interview'}
-            </button>
+            <div className="flex flex-col gap-2 pt-1">
+              {onOpenCV ? (
+                <button
+                  onClick={onOpenCV}
+                  id="footer-download-cv-btn"
+                  className="w-full py-2.5 px-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 font-semibold text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{isArabic ? 'تحميل السيرة الذاتية (PDF CV)' : 'Download Candidate CV (PDF)'}</span>
+                  <Download className="w-3.5 h-3.5 text-emerald-300" />
+                </button>
+              ) : (
+                <a
+                  href="/Shebas_Khan_CV.pdf"
+                  download="Shebas_Khan_Senior_Architect_CV.pdf"
+                  id="footer-download-cv-link"
+                  className="w-full py-2.5 px-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 font-semibold text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{isArabic ? 'تحميل السيرة الذاتية (PDF CV)' : 'Download Candidate CV (PDF)'}</span>
+                  <Download className="w-3.5 h-3.5 text-emerald-300" />
+                </a>
+              )}
+
+              <button
+                onClick={onOpenEstimator}
+                id="footer-start-brief-btn"
+                className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-lg shadow-indigo-600/20"
+              >
+                {isArabic ? 'تواصل لتحديد مقابلة عمل' : 'Schedule Full-Time Interview'}
+              </button>
+            </div>
           </div>
         </div>
 
