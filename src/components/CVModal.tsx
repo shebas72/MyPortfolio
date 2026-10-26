@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { X, Download, Printer, Check, Copy, FileText, Briefcase, Mail, Phone, MapPin, ShieldCheck, Award, ExternalLink, Github } from 'lucide-react';
-import { DESIGNER_INFO, EXPERIENCES, CERTIFICATIONS, KEY_SKILLS } from '../data/portfolioData';
+import { X, Download, Printer, Check, Copy, FileText, Briefcase, Mail, Phone, MapPin, ShieldCheck, Award, ExternalLink, Github, Code2 } from 'lucide-react';
+import { DESIGNER_INFO, EXPERIENCES, CERTIFICATIONS, KEY_SKILLS, OPEN_SOURCE_CONTRIBUTIONS } from '../data/portfolioData';
 
 interface CVModalProps {
   isOpen: boolean;
@@ -206,6 +206,82 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose, isArabic }) =
                     </ul>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Open Source & Community Contributions */}
+            <div>
+              <h2 className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-3 flex items-center gap-2">
+                <Code2 className="w-3.5 h-3.5" />
+                <span>Open Source &amp; WordPress Core Ecosystem Contributions</span>
+              </h2>
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2.5">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white text-sm">Mema Multi Branch Locator Map</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      WordPress.org Plugin • v1.2.3
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://wordpress.org/plugins/mema-multi-branch-locator-map/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300 hover:underline"
+                    >
+                      <span>WordPress.org Directory</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+                <p className="text-xs text-neutral-300">
+                  Official open-source WordPress plugin published to WordPress.org. Enables businesses, retail chains, and clinics to embed interactive branch locator maps with custom SVG markers using zero-cost OpenStreetMap (via Leaflet.js, no API billing) or Google Maps Platform. Includes Custom Post Types (CPT), shortcode [mema_branch_map], and full Arabic RTL layout localization.
+                </p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {["WordPress.org", "OpenStreetMap", "Leaflet.js", "Google Maps Platform", "PHP", "Shortcodes", "Arabic RTL", "GPLv2"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 rounded bg-white/5 text-[10px] text-neutral-300 font-mono">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Featured Live Production Deployments */}
+            <div>
+              <h2 className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 flex items-center gap-2">
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Featured Live Production Deployments</span>
+              </h2>
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white text-sm">Virtual Stock Market SaaS &amp; Payment Gateway</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      Live SaaS
+                    </span>
+                  </div>
+                  <a
+                    href="https://phpstack-1009378-6748898.cloudwaysapps.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 hover:underline"
+                  >
+                    <span>Launch Live Platform</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <p className="text-xs text-neutral-300">
+                  Multiplayer virtual stock market with live quotes, $100,000 simulated portfolios, multi-tenant team workspaces, global leaderboards, and integrated Stripe &amp; PayPal subscription payment gateways.
+                </p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {["Laravel 11", "Stripe API", "PayPal SDK", "Alpine.js", "Tailwind CSS", "MySQL", "Cloudways"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 rounded bg-white/5 text-[10px] text-neutral-300 font-mono">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 

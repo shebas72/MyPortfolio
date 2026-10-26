@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DESIGNER_INFO } from '../data/portfolioData';
-import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck, FileText, Download, ExternalLink } from 'lucide-react';
+import { Mail, Phone, Copy, Check, ArrowUp, Github, Linkedin, MessageCircle, ShieldCheck, FileText, Download, ExternalLink, Globe } from 'lucide-react';
 
 interface FooterProps {
   onOpenEstimator: () => void;
@@ -90,6 +90,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenEstimator, onOpenCV, isAra
             >
               <Github className="w-4 h-4 text-indigo-400" />
               <span className="font-mono">github.com/shebas72</span>
+              <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+            </a>
+            <a
+              href="https://wordpress.org/plugins/mema-multi-branch-locator-map/"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="footer-wporg-link"
+              className="flex items-center gap-2 text-xs text-sky-400 hover:text-sky-300 transition-colors group"
+            >
+              <Globe className="w-4 h-4 text-sky-400" />
+              <span className="font-mono">WP.org (Mema Branch Map)</span>
               <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
             </a>
           </div>

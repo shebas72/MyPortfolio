@@ -1,4 +1,4 @@
-import { Project, ExperienceItem, ServiceItem, Certification, TechStackKey } from '../types';
+import { Project, ExperienceItem, ServiceItem, Certification, TechStackKey, OpenSourceContribution } from '../types';
 
 export const DESIGNER_INFO = {
   name: "Shebas Khan",
@@ -20,12 +20,50 @@ export const DESIGNER_INFO = {
   statSecurityRating: "0.02%",
   socials: {
     github: "https://github.com/shebas72",
+    wordpress: "https://wordpress.org/plugins/mema-multi-branch-locator-map/",
     linkedin: "https://linkedin.com",
     dribbble: "https://dribbble.com",
     twitter: "https://twitter.com",
     whatsapp: "https://wa.me/966550860467"
   }
 };
+
+export const OPEN_SOURCE_CONTRIBUTIONS: OpenSourceContribution[] = [
+  {
+    id: "mema-multi-branch-locator-map",
+    name: "Mema Multi Branch Locator Map",
+    arabicName: "إضافة خريطة الفروع المتعددة لووردبريس (مفتوحة المصدر)",
+    type: "WordPress Plugin",
+    platform: "WordPress.org",
+    url: "https://wordpress.org/plugins/mema-multi-branch-locator-map/",
+    downloadUrl: "https://downloads.wordpress.org/plugin/mema-multi-branch-locator-map.zip",
+    version: "1.2.3",
+    tagline: "Multilingual branch locator map with custom markers using OpenStreetMap or Google Maps for WordPress",
+    arabicTagline: "إضافة خرائط فروع تفاعلية متعددة اللغات مع علامات مخصصة عبر OpenStreetMap أو Google Maps",
+    description: "An official open-source WordPress plugin authored and maintained by Shebas Khan on WordPress.org. Enables companies and organizations to effortlessly embed interactive, multilingual branch maps with custom map pins. Features dual mapping engines: zero-cost OpenStreetMap (via Leaflet.js, no API key required) or Google Maps Platform.",
+    arabicDescription: "إضافة رسمية مفتوحة المصدر تم تطويرها ونشرها بواسطة شباس خان على مستودع إضافات ووردبريس العالمي (WordPress.org). تتيح للشركات والمتاجر إضافة خرائط فروع تفاعلية مع علامات مخصصة باستخدام OpenStreetMap المجاني بدون الحاجة لمفاتيح API أو Google Maps مع توافق كامل مع اللغة العربية (RTL) والرمز القصير [mema_branch_map].",
+    shortcode: "[mema_branch_map]",
+    bannerImage: "https://ps.w.org/mema-multi-branch-locator-map/assets/banner-772x250.png?rev=3765171",
+    iconImage: "https://ps.w.org/mema-multi-branch-locator-map/assets/icon-256x256.png?rev=3765171",
+    features: [
+      "Zero-Cost OpenStreetMap & Leaflet.js engine (No API billing or credit card required)",
+      "Optional Google Maps Platform engine switch for enterprise deployments",
+      "Dedicated Location Custom Post Type (CPT) with coordinates, contact details & custom icons",
+      "Bilingual Arabic (RTL) & English layout with Polylang and WPML compatibility",
+      "Single responsive shortcode: [mema_branch_map] for instant page embedding",
+      "Verified WordPress Coding Standards (WPCS) with secure nonce & input sanitization"
+    ],
+    arabicFeatures: [
+      "محرك خرائط OpenStreetMap مجاني 100% بالاعتماد على Leaflet.js بدون أي تكلفة أو مفاتيح API",
+      "خيار التبديل لمحرك Google Maps Platform للمشاريع الكبرى",
+      "نوع منشور مخصص للفروع (CPT) لإدارة الإحداثيات وساعات العمل وأرقام التواصل والعلامات",
+      "توافق كامل مع الاتجاه من اليمين لليسار (RTL) وإضافات Polylang و WPML",
+      "رمز قصير بسيط [mema_branch_map] للتضمين المباشر في أي صفحة أو قالب",
+      "مطابقة كاملة لمعايير أمان ووردبريس الرسمية (WPCS) وترخيص البرمجيات الحرة GPL"
+    ],
+    tags: ["WordPress.org", "OpenStreetMap", "Leaflet.js", "Google Maps", "PHP", "Arabic RTL", "GPLv2"]
+  }
+];
 
 export const SAUDI_MARKET_PILLARS = [
   {
@@ -59,6 +97,156 @@ export const SAUDI_MARKET_PILLARS = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: "mema-multi-branch-locator-map",
+    title: "Mema Multi Branch Locator Map (WordPress Plugin)",
+    arabicTitle: "إضافة خريطة الفروع المتعددة لووردبريس (مفتوحة المصدر)",
+    client: "WordPress.org Plugin Directory (Open Source)",
+    arabicClient: "دليل إضافات ووردبريس الرسمي (WordPress.org)",
+    year: "2026",
+    category: "WordPress + Headless",
+    stackType: "wordpress",
+    tagline: "Multilingual branch locator map with custom markers using OpenStreetMap or Google Maps for WordPress",
+    arabicTagline: "إضافة خرائط فروع تفاعلية متعددة اللغات مع علامات مخصصة عبر OpenStreetMap أو Google Maps وإدراج بالرمز القصير",
+    description: "An official open-source WordPress plugin authored and published by Shebas Khan on the WordPress.org Plugin Directory. Enables businesses, retail chains, medical centers, and organizations to easily embed responsive, bilingual interactive branch locator maps with custom map pins. Features dual mapping engines: zero-cost OpenStreetMap (powered by Leaflet.js with no API keys required) or Google Maps Platform. Offers a dedicated Location Custom Post Type (CPT), custom latitude/longitude coordinates, contact meta fields, WPML & Polylang compatibility, and a single responsive shortcode [mema_branch_map].",
+    challenge: "Organizations and retail chains across Saudi Arabia frequently face high Google Maps Platform API billing for simple branch locator pages, or struggle with rigid branch directories that lack native Arabic RTL support and custom SVG pins.",
+    solution: "Architected a lightweight, modular, and open-source WordPress plugin published directly to the WordPress.org Plugin Repository. Built on Leaflet.js with OpenStreetMap (zero API billing) alongside an optional Google Maps Platform toggle, Custom Post Types (CPT) for branches, Arabic RTL layout support, and simple [mema_branch_map] shortcode embedding.",
+    coverImage: "https://ps.w.org/mema-multi-branch-locator-map/assets/banner-772x250.png?rev=3765171",
+    mockupScreens: [
+      {
+        title: "Official WordPress.org Plugin Showcase & Architecture",
+        subtitle: "Published open-source plugin banner, Leaflet map renderer & multilingual branch drawer",
+        previewType: "tokens",
+        image: "https://ps.w.org/mema-multi-branch-locator-map/assets/banner-772x250.png?rev=3765171"
+      },
+      {
+        title: "WordPress Admin Branch & Location CPT Manager",
+        subtitle: "Manage store coordinates, working hours, phone numbers, and custom icons",
+        previewType: "editor",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+      },
+      {
+        title: "Bilingual Arabic RTL Responsive Shortcode Embed",
+        subtitle: "Instant embedding via [mema_branch_map] with seamless mobile bottom-sheet branch selector",
+        previewType: "mobile",
+        image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1400&q=80"
+      }
+    ],
+    tags: ["WordPress Plugin", "Open Source", "WordPress.org", "OpenStreetMap", "Leaflet.js", "Google Maps Platform", "PHP", "Shortcodes", "Bilingual RTL"],
+    saudiTags: ["Open Source Contribution", "WordPress.org Plugin", "Multi-Branch Locator", "Arabic RTL Ready", "Free OpenStreetMap"],
+    architectureStack: {
+      wordpress: "Custom WordPress Plugin architecture with registered 'mema_branch' Custom Post Type, admin metaboxes, and shortcode pipeline",
+      react: "Modern ES6 & Leaflet.js reactive client controller with zero bulky external framework overhead",
+      database: "WordPress postmeta with cached geographic coordinates and indexed query retrieval",
+      compliance: "WordPress.org Coding Standards (WPCS), nonce CSRF security, sanitized input/escaping, and GPLv2 open-source licensing"
+    },
+    metrics: [
+      { label: "Repository", value: "WordPress.org", detail: "Official public plugin directory publication" },
+      { label: "Map Engine", value: "Leaflet & OSM", detail: "100% free OpenStreetMap & Google Maps dual mode" },
+      { label: "Version", value: "v1.2.3", detail: "Active open-source release with shortcode [mema_branch_map]" }
+    ],
+    deliverables: ["WordPress.org Approved Plugin Architecture", "OpenStreetMap & Leaflet.js Free Engine", "Custom Branch Post Type & Coordinate Metas", "Arabic RTL & Multilingual Shortcode System"],
+    tools: ["WordPress", "PHP", "Leaflet.js", "OpenStreetMap", "Google Maps API", "JavaScript", "CSS3 / RTL", "SVGs"],
+    colorPalette: [
+      { name: "WordPress Blue", hex: "#21759B" },
+      { name: "Map Emerald", hex: "#10B981" },
+      { name: "Pin Crimson", hex: "#EF4444" },
+      { name: "Tile Slate", hex: "#1E293B" },
+      { name: "Leaflet Grey", hex: "#F8FAFC" }
+    ],
+    typography: {
+      primary: "System & Cairo",
+      secondary: "Plus Jakarta Sans",
+      sampleText: "[mema_branch_map zoom='14']"
+    },
+    featured: true,
+    liveUrl: "https://wordpress.org/plugins/mema-multi-branch-locator-map/",
+    isOpenSource: true,
+    openSourceMeta: {
+      platform: "WordPress.org",
+      pluginUrl: "https://wordpress.org/plugins/mema-multi-branch-locator-map/",
+      downloadUrl: "https://downloads.wordpress.org/plugin/mema-multi-branch-locator-map.zip",
+      version: "1.2.3",
+      shortcode: "[mema_branch_map]",
+      activeInstalls: "Active on WordPress.org",
+      testedUpTo: "WordPress 6.7+",
+      requiresPhp: "7.4 or higher",
+      bannerUrl: "https://ps.w.org/mema-multi-branch-locator-map/assets/banner-772x250.png?rev=3765171",
+      iconUrl: "https://ps.w.org/mema-multi-branch-locator-map/assets/icon-256x256.png?rev=3765171"
+    }
+  },
+  {
+    id: "virtual-stock-market-saas",
+    title: "Virtual Stock Market SaaS & Payment Gateway",
+    arabicTitle: "منصة سوق الأسهم الافتراضي السحابية وبوابات الدفع (SaaS)",
+    client: "Confidential (Fintech & EdTech SaaS Venture)",
+    arabicClient: "جهة سرية (مشروع تكنولوجيا مالية سحابي)",
+    year: "2026",
+    category: "Laravel API & Fintech",
+    stackType: "laravel",
+    tagline: "Multiplayer virtual trading platform with live quotes, $100K simulated portfolios, team workspaces & Stripe/PayPal gateway",
+    arabicTagline: "منصة تداول افتراضي جماعية مع أسعار مباشرة، محافظ تجريبية بقيمة ١٠٠ ألف دولار، مساحات عمل جماعية وبوابات دفع إلكترونية",
+    description: "A production-grade, multi-tenant SaaS virtual stock market platform engineered for aspiring traders, investment clubs, and classrooms to trade financial markets without real capital risk. Features real-time market data quotes, $100,000 starting cash per trader, order placement with instant balance and cost validation, team leaderboards, stock screeners, and integrated subscription billing with Stripe and PayPal gateways.",
+    challenge: "Simulating realistic stock trading required high-throughput market data ingestion, strict atomic portfolio validations to prevent negative balance race conditions, and seamless multi-tenant subscription tiers with automatic 7-day trials without upfront credit card barriers.",
+    solution: "Architected an end-to-end multi-tenant Laravel platform deployed on Cloudways, integrating real-time market quote ingestion, workspace tenancy isolation, automated trade auditing, and PCI-compliant payment gateways (Stripe & PayPal) supporting tiered seats (Starter, Professional, Enterprise) and instant provisioning.",
+    coverImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=80",
+    mockupScreens: [
+      {
+        title: "Live Market Terminal & Stock Ticker",
+        subtitle: "Real-time stock price tape, candlestick charting, and instant buy/sell order validation",
+        previewType: "dashboard",
+        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=80"
+      },
+      {
+        title: "Multi-Tenant Team Workspace & Leaderboard",
+        subtitle: "Rank portfolios by ROI return percentage across workspace leagues with automated podium standings",
+        previewType: "dashboard",
+        image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1400&q=80"
+      },
+      {
+        title: "SaaS Subscription & Payment Gateways",
+        subtitle: "Seat-based tiered plans with Stripe & PayPal checkout, 7-day automated trial, and zero card locking",
+        previewType: "ecommerce",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+      }
+    ],
+    tags: ["Laravel 11", "SaaS Multi-Tenant", "Stripe Gateway", "PayPal Gateway", "Live Stock Quotes", "Simulated Trading", "Alpine.js", "Tailwind CSS", "Cloudways"],
+    saudiTags: ["Real Project", "Live SaaS", "Fintech Trading", "Payment Gateway", "Cloudways Hosted"],
+    architectureStack: {
+      laravel: "Laravel 11 multi-tenant architecture with atomic trade transactions, session management & subscription billing pipelines",
+      react: "Alpine.js & Tailwind CSS modern reactive dashboard with real-time ticker tape and interactive seat-based plan calculator",
+      database: "MySQL 8 with indexed historical trade ledgers, workspace isolation & Redis caching",
+      compliance: "PCI-DSS tokenized Stripe & PayPal gateways with secure webhooks, CSRF hardening, and anti-abuse trade rate limiting"
+    },
+    metrics: [
+      { label: "Simulated Capital", value: "$100,000", detail: "Per trader allocation with atomic balance reconciliation" },
+      { label: "Payment Gateways", value: "Stripe & PayPal", detail: "Automated seat subscription and 7-day frictionless trial" },
+      { label: "Order Execution", value: "< 120ms", detail: "Instant cost validation and portfolio equity recalculation" }
+    ],
+    deliverables: ["Multiplayer Trading Engine & Portfolio Calculator", "Stripe & PayPal SaaS Gateway Integration", "Seat-Based Subscription & Trial Manager", "Multi-Tenant Workspace & Leaderboard Architecture"],
+    tools: ["Laravel", "PHP 8.2+", "Stripe API", "PayPal SDK", "Alpine.js", "Tailwind CSS", "MySQL", "Cloudways", "Nginx"],
+    colorPalette: [
+      { name: "Trading Ink", hex: "#05060F" },
+      { name: "Bullish Mint", hex: "#10B981" },
+      { name: "Electric Brand", hex: "#6366F1" },
+      { name: "Slate Border", hex: "#1E2235" },
+      { name: "Pure Platinum", hex: "#F8FAFC" }
+    ],
+    typography: {
+      primary: "Plus Jakarta Sans",
+      secondary: "JetBrains Mono",
+      sampleText: "Virtual Stock Market — Trade the market without the risk ($100,000 cash)"
+    },
+    featured: true,
+    liveUrl: "https://phpstack-1009378-6748898.cloudwaysapps.com/",
+    testimonial: {
+      quote: "Shebas engineered an exceptionally slick SaaS trading platform with zero lag on order validation. The integrated Stripe and PayPal subscription flows give our workspaces effortless onboarding without friction.",
+      author: "Senior Product Manager",
+      role: "Fintech Product Lead",
+      company: "Confidential (Fintech & EdTech SaaS Venture)",
+      arabicCompany: "جهة سرية (مشروع تكنولوجيا مالية سحابي)"
+    }
+  },
   {
     id: "injazat-superpay",
     title: "Enterprise SuperPay & ZATCA Hub",

@@ -63,6 +63,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, onOp
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-mono text-indigo-300">
             <span>🇸🇦 15+ Years in KSA</span>
           </div>
+
+          <a
+            href="https://wordpress.org/plugins/mema-multi-branch-locator-map/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/25 text-xs font-mono text-sky-300 hover:bg-sky-500/20 hover:text-white transition-colors"
+            title="Open Source WordPress Plugin Author"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+            <span>{isArabic ? 'مساهم مفتوح المصدر (WordPress.org)' : 'WordPress.org Open Source Author'}</span>
+            <ExternalLink className="w-3 h-3 opacity-70" />
+          </a>
         </div>
 
         {/* Hero Main Headline */}
@@ -179,6 +191,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, onOp
               <Github className="w-4 h-4 text-neutral-300 group-hover:text-white transition-colors" />
               <span>github.com/shebas72</span>
               <ExternalLink className="w-3 h-3 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+            </a>
+
+            <a
+              href="https://wordpress.org/plugins/mema-multi-branch-locator-map/"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="hero-wporg-link"
+              className="px-4 py-3.5 rounded-xl font-mono text-xs text-sky-300 border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 hover:text-white hover:border-sky-400/50 transition-all flex items-center gap-2 group shadow-sm"
+              title="View Mema Multi Branch Locator Map on WordPress.org"
+            >
+              <Globe className="w-4 h-4 text-sky-400 group-hover:text-white transition-colors" />
+              <span>WordPress.org Plugin ↗</span>
             </a>
           </div>
         </div>

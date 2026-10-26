@@ -27,6 +27,40 @@ export interface ArchitectureStack {
   compliance?: string;
 }
 
+export interface OpenSourceMeta {
+  platform: 'WordPress.org' | 'GitHub' | 'NPM';
+  pluginUrl: string;
+  downloadUrl?: string;
+  version?: string;
+  shortcode?: string;
+  activeInstalls?: string;
+  testedUpTo?: string;
+  requiresPhp?: string;
+  bannerUrl?: string;
+  iconUrl?: string;
+}
+
+export interface OpenSourceContribution {
+  id: string;
+  name: string;
+  arabicName: string;
+  type: string;
+  platform: string;
+  url: string;
+  downloadUrl: string;
+  version: string;
+  tagline: string;
+  arabicTagline: string;
+  description: string;
+  arabicDescription: string;
+  shortcode: string;
+  bannerImage: string;
+  iconImage: string;
+  features: string[];
+  arabicFeatures: string[];
+  tags: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -57,6 +91,8 @@ export interface Project {
   };
   featured: boolean;
   liveUrl?: string;
+  isOpenSource?: boolean;
+  openSourceMeta?: OpenSourceMeta;
   testimonial?: {
     quote: string;
     author: string;

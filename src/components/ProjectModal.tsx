@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Project } from '../types';
-import { X, ExternalLink, TrendingUp, Check, Copy, Sparkles, ChevronLeft, ChevronRight, Layers, ShieldCheck, Database, Code2, Globe2 } from 'lucide-react';
+import { X, ExternalLink, TrendingUp, Check, Copy, Sparkles, ChevronLeft, ChevronRight, Layers, ShieldCheck, Database, Code2, Globe2, Download, MapPin, Terminal } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -12,6 +12,7 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onNext, onPrev, isArabic }) => {
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
+  const [copiedShortcode, setCopiedShortcode] = useState(false);
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
 
   if (!project) return null;
@@ -20,6 +21,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
     navigator.clipboard.writeText(hex);
     setCopiedHex(hex);
     setTimeout(() => setCopiedHex(null), 1800);
+  };
+
+  const handleCopyShortcode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedShortcode(true);
+    setTimeout(() => setCopiedShortcode(false), 2000);
   };
 
   const activeScreen = project.mockupScreens[activeScreenIndex] || project.mockupScreens[0];
@@ -45,6 +52,44 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             </span>
           </div>
           <div className="flex items-center gap-2">
+            {project.isOpenSource && project.openSourceMeta ? (
+              <>
+                {project.openSourceMeta.downloadUrl && (
+                  <a
+                    href={project.openSourceMeta.downloadUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition-all border border-white/15 mr-1"
+                    title="Download Plugin ZIP"
+                  >
+                    <Download className="w-3.5 h-3.5 text-neutral-300" />
+                    <span>.ZIP</span>
+                  </a>
+                )}
+                <a
+                  href={project.openSourceMeta.pluginUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#21759B] hover:bg-[#1b6282] text-white text-xs font-bold transition-all shadow-md shadow-sky-950/40 mr-1"
+                  title="View on WordPress.org"
+                >
+                  <Globe2 className="w-3.5 h-3.5" />
+                  <span>WordPress.org ↗</span>
+                </a>
+              </>
+            ) : project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 text-xs font-bold transition-all shadow-md shadow-emerald-950/40 mr-1"
+                title="Launch Live Application"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-neutral-950 animate-ping" />
+                <span>{isArabic ? 'المنصة الحية' : 'Live App'}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            ) : null}
             {onPrev && (
               <button onClick={onPrev} className="p-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white" title="Previous Project">
                 <ChevronLeft className="w-4 h-4" />
@@ -117,6 +162,111 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
               </div>
             )}
           </div>
+
+          {/* Open Source Contribution Banner if open-source plugin */}
+          {project.isOpenSource && project.openSourceMeta && (
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#21759B]/20 via-[#121522] to-emerald-950/20 border border-[#21759B]/40 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-[#21759B]/20 border border-[#21759B]/40 text-sky-400">
+                    <Globe2 className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-bold text-white">WordPress.org Official Plugin</span>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        v{project.openSourceMeta.version || '1.2.3'}
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                        Open Source
+                      </span>
+                    </div>
+                    <p className="text-xs text-neutral-300 mt-0.5">
+                      {isArabic 
+                        ? 'متاح للتحميل والتثبيت المباشر من دليل إضافات ووردبريس الرسمي'
+                        : 'Published & available for installation directly via WordPress.org Plugin Repository'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={project.openSourceMeta.pluginUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#21759B] hover:bg-[#1b6282] text-white text-xs font-bold transition-all shadow-md"
+                  >
+                    <span>{isArabic ? 'صفحة الإضافة في WP.org' : 'View on WordPress.org'}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  {project.openSourceMeta.downloadUrl && (
+                    <a
+                      href={project.openSourceMeta.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition-all border border-white/10"
+                    >
+                      <Download className="w-3.5 h-3.5 text-neutral-300" />
+                      <span>{isArabic ? 'تحميل ZIP' : 'Download .ZIP'}</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Shortcode & Usage Box */}
+              {project.openSourceMeta.shortcode && (
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-black/40 border border-white/10 font-mono text-xs">
+                  <div className="flex items-center gap-2 text-neutral-300">
+                    <Terminal className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>{isArabic ? 'الرمز القصير للتضمين في أي صفحة:' : 'WordPress Shortcode Embed:'}</span>
+                    <code className="px-2 py-1 rounded bg-sky-500/10 text-sky-300 font-bold border border-sky-500/20">
+                      {project.openSourceMeta.shortcode}
+                    </code>
+                  </div>
+                  <button
+                    onClick={() => handleCopyShortcode(project.openSourceMeta?.shortcode || '')}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-200 hover:text-white transition-colors text-xs font-sans self-start sm:self-auto"
+                  >
+                    {copiedShortcode ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">{isArabic ? 'تم النسخ!' : 'Copied!'}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5 text-neutral-400" />
+                        <span>{isArabic ? 'نسخ الرمز القصير' : 'Copy Shortcode'}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+
+              {/* Key Specs Pills */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Map Engine</span>
+                  <span className="font-semibold text-white">Leaflet &amp; OpenStreetMap</span>
+                  <span className="text-[10px] text-emerald-400 block mt-0.5">100% Free / No API Bill</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Dual Mode Switch</span>
+                  <span className="font-semibold text-white">Google Maps API</span>
+                  <span className="text-[10px] text-neutral-400 block mt-0.5">Toggle via WP Admin</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Localization</span>
+                  <span className="font-semibold text-white">Arabic RTL &amp; LTR</span>
+                  <span className="text-[10px] text-indigo-300 block mt-0.5">Polylang &amp; WPML Ready</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Licensing</span>
+                  <span className="font-semibold text-white">GPLv2 Open Source</span>
+                  <span className="text-[10px] text-neutral-400 block mt-0.5">Free for Commercial Use</span>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Architecture Triad Breakdown (WordPress + Laravel + React) */}
           <div className="p-6 rounded-2xl bg-[#121522] border border-white/10 space-y-4">
@@ -257,17 +407,41 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                 <span key={t} className="px-2.5 py-1 rounded-lg bg-white/5 text-neutral-200 font-mono">{t}</span>
               ))}
             </div>
-            {project.liveUrl && (
+            {project.isOpenSource && project.openSourceMeta ? (
+              <div className="flex items-center gap-2">
+                {project.openSourceMeta.downloadUrl && (
+                  <a
+                    href={project.openSourceMeta.downloadUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition-all border border-white/10"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>{isArabic ? 'تحميل .ZIP' : 'Download .ZIP'}</span>
+                  </a>
+                )}
+                <a 
+                  href={project.openSourceMeta.pluginUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#21759B] hover:bg-[#1b6282] text-white font-bold text-xs transition-all shadow-lg shadow-sky-950/40"
+                >
+                  <Globe2 className="w-4 h-4" />
+                  <span>{isArabic ? 'دليل ووردبريس الرسمي ↗' : 'View on WordPress.org ↗'}</span>
+                </a>
+              </div>
+            ) : project.liveUrl ? (
               <a 
                 href={project.liveUrl} 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-neutral-950 font-bold text-xs transition-all shadow-lg shadow-emerald-950/40"
               >
-                <span>Live Prototype</span>
+                <span className="w-2 h-2 rounded-full bg-neutral-950 animate-pulse" />
+                <span>{isArabic ? 'فتح المنصة الحية مباشرة' : 'Launch Live Application'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
