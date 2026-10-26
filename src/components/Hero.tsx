@@ -89,18 +89,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenEstimator, onOp
             <span className="text-amber-400 font-semibold">ZATCA Phase 2</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6 font-display">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] text-white leading-[1.06] mb-6 font-display">
             {isArabic ? (
               <>
                 مهندس برمجيات ومصمم واجهات أول في{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-white to-neutral-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-emerald-400">
                   السوق السعودي
                 </span>
               </>
             ) : (
               <>
                 Senior Full-Stack Architect &amp; UI/UX Specialist for the{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-neutral-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-cyan-100 to-indigo-400">
                   Saudi Market.
                 </span>
               </>

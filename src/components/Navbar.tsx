@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Menu, 
   X, 
@@ -17,9 +17,43 @@ import {
   Award,
   Code2,
   FolderGit2,
-  Github
+  Github,
+  Type,
+  ChevronDown
 } from 'lucide-react';
 import { DESIGNER_INFO } from '../data/portfolioData';
+import { HeadingFontOption } from '../types';
+
+export const HEADING_FONTS: { id: HeadingFontOption; label: string; sublabel: string; family: string; tag: string }[] = [
+  { 
+    id: 'outfit', 
+    label: 'Outfit', 
+    sublabel: 'Executive Geometric', 
+    family: "'Outfit', sans-serif",
+    tag: 'Recommended • High Tech' 
+  },
+  { 
+    id: 'space-grotesk', 
+    label: 'Space Grotesk', 
+    sublabel: 'Architectural Tech', 
+    family: "'Space Grotesk', sans-serif",
+    tag: 'Developer Systems' 
+  },
+  { 
+    id: 'bricolage', 
+    label: 'Bricolage', 
+    sublabel: 'Editorial Grotesque', 
+    family: "'Bricolage Grotesque', sans-serif",
+    tag: 'Distinctive Character' 
+  },
+  { 
+    id: 'urbanist', 
+    label: 'Urbanist', 
+    sublabel: 'Precision Minimalist', 
+    family: "'Urbanist', sans-serif",
+    tag: 'Clean Architectural' 
+  },
+];
 
 interface NavbarProps {
   onOpenEstimator: () => void;
@@ -27,17 +61,23 @@ interface NavbarProps {
   activeSection: string;
   isArabic: boolean;
   onToggleLanguage: () => void;
+  headingFont?: HeadingFontOption;
+  onSelectHeadingFont?: (font: HeadingFontOption) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
   onOpenEstimator, 
   onOpenCV, 
   isArabic, 
-  onToggleLanguage 
+  onToggleLanguage,
+  headingFont = 'outfit',
+  onSelectHeadingFont
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
+  const [fontMenuOpen, setFontMenuOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const fontMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,15 +99,25 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [burgerMenuOpen]);
 
-  // Handle escape key
+  // Handle escape key & click outside
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setBurgerMenuOpen(false);
+        setFontMenuOpen(false);
+      }
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (fontMenuRef.current && !fontMenuRef.current.contains(e.target as Node)) {
+        setFontMenuOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleCopyEmail = (e: React.MouseEvent) => {
@@ -176,6 +226,85 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Languages className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-semibold text-[11px] sm:text-xs">{isArabic ? 'EN' : 'عربي'}</span>
             </button>
+
+            {/* Typography Preset Picker Dropdown */}
+            <div className="relative" ref={fontMenuRef}>
+              <button
+                onClick={() => setFontMenuOpen(!fontMenuOpen)}
+                id="navbar-font-picker-btn"
+                title={isArabic ? 'تغيير خط العناوين الرئيسي' : 'Change Heading Font'}
+                aria-expanded={fontMenuOpen}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-indigo-500/30 text-xs font-mono text-neutral-200 hover:text-white transition-all"
+              >
+                <Type className="w-3.5 h-3.5 text-indigo-400" />
+                <span className="hidden lg:inline text-[11px] font-semibold">
+                  {HEADING_FONTS.find(f => f.id === headingFont)?.label || 'Outfit'}
+                </span>
+                <ChevronDown className={`w-3 h-3 text-neutral-400 transition-transform ${fontMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {fontMenuOpen && (
+                <div 
+                  className={`absolute ${isArabic ? 'left-0' : 'right-0'} mt-2 w-72 p-2 rounded-2xl bg-[#121522] border border-white/15 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in zoom-in-95 duration-150`}
+                >
+                  <div className="px-3 py-2 border-b border-white/5 mb-1.5">
+                    <div className="flex items-center justify-between">
+                      <p className="text-[10px] font-mono uppercase tracking-wider text-indigo-300 font-semibold">
+                        {isArabic ? 'خط العناوين الرئيسي' : 'Heading & Display Font'}
+                      </p>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono">
+                        Instant Live
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      {isArabic ? 'تحديث فوري لكافة العناوين بالصفحة' : 'Pairs with Readex Pro & IBM Plex in Arabic'}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    {HEADING_FONTS.map((font) => {
+                      const isSelected = (headingFont || 'outfit') === font.id;
+                      return (
+                        <button
+                          key={font.id}
+                          onClick={() => {
+                            if (onSelectHeadingFont) onSelectHeadingFont(font.id);
+                            setFontMenuOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all ${
+                            isSelected 
+                              ? 'bg-indigo-600/25 border border-indigo-500/50 text-white shadow-sm' 
+                              : 'hover:bg-white/5 text-neutral-300 hover:text-white border border-transparent'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span 
+                                className="text-sm font-bold" 
+                                style={{ 
+                                  fontFamily: font.id === 'outfit' ? 'Outfit' : font.id === 'space-grotesk' ? 'Space Grotesk' : font.id === 'bricolage' ? 'Bricolage Grotesque' : 'Urbanist' 
+                                }}
+                              >
+                                {font.label}
+                              </span>
+                              {font.id === 'outfit' && (
+                                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">
+                                  Default
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-[10px] text-neutral-400 block font-mono mt-0.5">
+                              {font.sublabel} • {font.tag}
+                            </span>
+                          </div>
+                          {isSelected && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Quick Hire Action */}
             <button
@@ -313,6 +442,55 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span>{isArabic ? 'معاينة' : 'Preview'}</span>
                   </button>
+                </div>
+              </div>
+
+              {/* DISPLAY TYPOGRAPHY SELECTOR IN DRAWER */}
+              <div className="p-4 rounded-2xl bg-[#141824] border border-white/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Type className="w-4 h-4 text-indigo-400" />
+                    <span className="text-xs font-mono uppercase tracking-wider text-neutral-300 font-semibold">
+                      {isArabic ? 'خط العناوين الرئيسي' : 'Heading Typography'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    Live Preview
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  {HEADING_FONTS.map((font) => {
+                    const isSelected = (headingFont || 'outfit') === font.id;
+                    return (
+                      <button
+                        key={font.id}
+                        onClick={() => {
+                          if (onSelectHeadingFont) onSelectHeadingFont(font.id);
+                        }}
+                        className={`p-2.5 rounded-xl border text-left transition-all ${
+                          isSelected
+                            ? 'border-indigo-500/60 bg-indigo-600/20 text-white shadow-sm'
+                            : 'border-white/5 bg-white/[0.02] text-neutral-400 hover:text-white hover:border-white/15'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span 
+                            className="text-xs font-bold" 
+                            style={{ 
+                              fontFamily: font.id === 'outfit' ? 'Outfit' : font.id === 'space-grotesk' ? 'Space Grotesk' : font.id === 'bricolage' ? 'Bricolage Grotesque' : 'Urbanist' 
+                            }}
+                          >
+                            {font.label}
+                          </span>
+                          {isSelected && <Check className="w-3 h-3 text-indigo-400" />}
+                        </div>
+                        <span className="text-[9px] font-mono text-neutral-500 block mt-0.5">
+                          {font.sublabel}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

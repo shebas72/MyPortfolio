@@ -2,13 +2,32 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'Syne', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-arabic: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
+  --font-arabic: 'Readex Pro', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
 }
 
 :root {
   color-scheme: dark;
+  --font-display-current: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-arabic-display-current: 'Readex Pro', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+/* Dynamic Typography Presets */
+[data-heading-font="outfit"] {
+  --font-display-current: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+[data-heading-font="space-grotesk"] {
+  --font-display-current: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+[data-heading-font="bricolage"] {
+  --font-display-current: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+}
+
+[data-heading-font="urbanist"] {
+  --font-display-current: 'Urbanist', system-ui, -apple-system, sans-serif;
 }
 
 body {
@@ -26,12 +45,29 @@ body {
 [dir="rtl"] h2, 
 [dir="rtl"] h3, 
 [dir="rtl"] .font-display {
-  font-family: var(--font-arabic);
+  font-family: var(--font-arabic-display-current);
   font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-display-current);
+  letter-spacing: -0.028em;
+}
+
+h1 {
+  letter-spacing: -0.038em;
+  font-weight: 800;
+}
+
+h2 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+h3 {
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
 /* Custom subtle scrollbar */

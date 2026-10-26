@@ -141,7 +141,7 @@ export const SaudiPaymentSummary: React.FC<{ amount: number }> = ({ amount }) =>
 };`,
       highlights: [
         "Bidirectional layout engine that mirrors padding, icons, and typography natively",
-        "Pairing of Cairo / IBM Plex Arabic with Syne and Plus Jakarta Sans",
+        "Harmonious pairing of Readex Pro & IBM Plex Arabic with Outfit and Plus Jakarta Sans",
         "Instant optimistic UI state with zero layout shifts or visual flickering",
         "Deep integration with modern design tokens (Tokens Studio / Figma Variables)"
       ]

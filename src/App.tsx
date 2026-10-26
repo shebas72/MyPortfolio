@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Project } from './types';
+import { Project, HeadingFontOption } from './types';
 import { PROJECTS } from './data/portfolioData';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -17,6 +17,22 @@ export default function App() {
   const [isEstimatorOpen, setIsEstimatorOpen] = useState(false);
   const [isCVOpen, setIsCVOpen] = useState(false);
   const [isArabic, setIsArabic] = useState(false);
+  const [headingFont, setHeadingFont] = useState<HeadingFontOption>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('shebas_portfolio_heading_font');
+      if (saved && ['outfit', 'space-grotesk', 'bricolage', 'urbanist'].includes(saved)) {
+        return saved as HeadingFontOption;
+      }
+    }
+    return 'outfit';
+  });
+
+  const handleSelectHeadingFont = (font: HeadingFontOption) => {
+    setHeadingFont(font);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('shebas_portfolio_heading_font', font);
+    }
+  };
 
   const toggleLanguage = () => {
     setIsArabic((prev) => !prev);
@@ -44,6 +60,7 @@ export default function App() {
   return (
     <div
       dir={isArabic ? 'rtl' : 'ltr'}
+      data-heading-font={headingFont}
       className={`min-h-screen bg-[#0B0D13] text-[#E4E7EC] selection:bg-emerald-500/30 selection:text-emerald-200 ${
         isArabic ? 'font-arabic' : 'font-sans'
       }`}
@@ -54,6 +71,8 @@ export default function App() {
         activeSection="work"
         isArabic={isArabic}
         onToggleLanguage={toggleLanguage}
+        headingFont={headingFont}
+        onSelectHeadingFont={handleSelectHeadingFont}
       />
 
       <main>
@@ -77,7 +96,11 @@ export default function App() {
         />
 
         {/* Interactive Design & Typography Tokens Lab */}
-        <DesignPlayground isArabic={isArabic} />
+        <DesignPlayground 
+          isArabic={isArabic} 
+          headingFont={headingFont}
+          onSelectHeadingFont={handleSelectHeadingFont}
+        />
 
         {/* 15+ Years Industry Experience & Services */}
         <ServicesAndExperience

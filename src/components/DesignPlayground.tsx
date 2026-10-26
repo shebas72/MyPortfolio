@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import { Sliders, Sparkles, Check, Copy, RefreshCw, Bell, Shield, ArrowRight, CreditCard, Languages } from 'lucide-react';
+import { Sliders, Sparkles, Check, Copy, RefreshCw, Bell, Shield, ArrowRight, CreditCard, Languages, Type } from 'lucide-react';
+import { HeadingFontOption } from '../types';
 
 interface DesignPlaygroundProps {
   isArabic: boolean;
+  headingFont?: HeadingFontOption;
+  onSelectHeadingFont?: (font: HeadingFontOption) => void;
 }
 
-export const DesignPlayground: React.FC<DesignPlaygroundProps> = ({ isArabic }) => {
+export const DesignPlayground: React.FC<DesignPlaygroundProps> = ({ 
+  isArabic,
+  headingFont = 'outfit',
+  onSelectHeadingFont
+}) => {
   const [accent, setAccent] = useState<'emerald' | 'indigo' | 'amber' | 'violet' | 'cyan'>('emerald');
   const [radius, setRadius] = useState<'sm' | 'md' | 'lg'>('md');
   const [isLoading, setIsLoading] = useState(false);
   const [madaActive, setMadaActive] = useState(true);
   const [sliderVal, setSliderVal] = useState(85);
   const [copiedTokens, setCopiedTokens] = useState(false);
-  const [activeFont, setActiveFont] = useState<'cairo' | 'ibm' | 'syne'>('cairo');
 
   const colors = {
     emerald: { name: 'Saudi Green', hex: '#10B981', bg: 'bg-emerald-600', text: 'text-emerald-400', border: 'border-emerald-500' },
@@ -41,7 +47,9 @@ export const DesignPlayground: React.FC<DesignPlaygroundProps> = ({ isArabic }) 
       accentColor: colors[accent].hex,
       radiusScale: radius === 'sm' ? '6px' : radius === 'md' ? '16px' : '28px',
       direction: isArabic ? 'rtl' : 'ltr',
-      fontStack: activeFont === 'cairo' ? 'Cairo, sans-serif' : activeFont === 'ibm' ? 'IBM Plex Sans Arabic, sans-serif' : 'Syne, sans-serif',
+      headingFont: headingFont,
+      fontStackDisplay: headingFont === 'outfit' ? 'Outfit, sans-serif' : headingFont === 'space-grotesk' ? 'Space Grotesk, sans-serif' : headingFont === 'bricolage' ? 'Bricolage Grotesque, sans-serif' : 'Urbanist, sans-serif',
+      fontStackArabic: 'Readex Pro, IBM Plex Sans Arabic, sans-serif',
       compliance: ['ZATCA Phase 2', 'Mada Verified', 'NCA ECC Aligned']
     };
     navigator.clipboard.writeText(JSON.stringify(tokens, null, 2));
@@ -125,23 +133,30 @@ export const DesignPlayground: React.FC<DesignPlaygroundProps> = ({ isArabic }) 
           </div>
 
           <div>
-            <label className="text-xs font-mono uppercase tracking-wider text-neutral-400 block mb-3">
-              {isArabic ? 'الخط العربي واللاتيني' : 'Typography Stack'}
-            </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-neutral-400">
+                {isArabic ? 'خط العناوين والترويسات' : 'Heading Typography'}
+              </label>
+              <span className="text-[10px] font-mono text-emerald-400">
+                {headingFont === 'outfit' ? 'Outfit • Default' : headingFont}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
               {[
-                { id: 'cairo', label: 'Cairo' },
-                { id: 'ibm', label: 'IBM Plex' },
-                { id: 'syne', label: 'Syne' }
+                { id: 'outfit', label: 'Outfit', desc: isArabic ? 'تنفيذي فخم' : 'Executive' },
+                { id: 'space-grotesk', label: 'Space Gr.', desc: isArabic ? 'معماري تقني' : 'Architectural' },
+                { id: 'bricolage', label: 'Bricolage', desc: isArabic ? 'تحريري جريء' : 'Editorial' },
+                { id: 'urbanist', label: 'Urbanist', desc: isArabic ? 'حديث ودقيق' : 'Minimalist' }
               ].map((f) => (
                 <button
                   key={f.id}
-                  onClick={() => setActiveFont(f.id as any)}
-                  className={`py-2 px-2.5 rounded-xl border text-xs font-medium transition-all ${
-                    activeFont === f.id ? 'border-emerald-400 bg-emerald-500/20 text-white' : 'border-white/5 text-neutral-400 hover:text-white'
+                  onClick={() => onSelectHeadingFont && onSelectHeadingFont(f.id as any)}
+                  className={`py-2 px-2.5 rounded-xl border text-xs font-medium text-left transition-all ${
+                    headingFont === f.id ? 'border-emerald-400 bg-emerald-500/20 text-white shadow-sm' : 'border-white/5 bg-white/[0.02] text-neutral-400 hover:text-white hover:border-white/15'
                   }`}
                 >
-                  {f.label}
+                  <div className="font-bold">{f.label}</div>
+                  <div className="text-[10px] text-neutral-400 font-mono">{f.desc}</div>
                 </button>
               ))}
             </div>

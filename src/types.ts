@@ -131,3 +131,6 @@ export interface Certification {
   issuer: string;
   year: string;
 }
+
+export type HeadingFontOption = 'outfit' | 'space-grotesk' | 'bricolage' | 'urbanist';
+
